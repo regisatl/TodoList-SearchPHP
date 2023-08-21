@@ -505,3 +505,159 @@ button {
 ```
 
 Ces exemples fournissent une base pour chaque partie du projet. Cependant, n'oubliez pas que la sécurité, la validation des données et d'autres aspects importants doivent être pris en compte lors du développement d'une application complète. Il est recommandé de consulter des ressources de développement web et des guides sur les meilleures pratiques pour garantir que votre application est sécurisée et fonctionne correctement.
+
+<!-- Code javascript -->
+
+Bien sûr, voici comment vous pourriez ajouter des scripts JavaScript pour améliorer l'expérience utilisateur dans différentes parties du projet :
+
+**1. Gestion des Tâches (tasks.php) - Ajout de script pour confirmation de suppression :**
+
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const deleteLinks = document.querySelectorAll(".delete-task");
+
+    deleteLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            const confirmDelete = confirm("Are you sure you want to delete this task?");
+            if (!confirmDelete) {
+                event.preventDefault();
+            }
+        });
+    });
+});
+```
+
+**2. Gestion des Utilisateurs par l'Administrateur (manage_users.php) - Affichage dynamique du formulaire de mise à jour de rôle :**
+
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const updateRoleForms = document.querySelectorAll(".update-role-form");
+    
+    updateRoleForms.forEach(form => {
+        form.addEventListener("change", function() {
+            form.submit();
+        });
+    });
+});
+```
+
+Assurez-vous d'inclure ces scripts dans votre fichier `script.js` et de lier ce fichier dans le `<head>` de vos pages HTML. Vous pouvez ajouter le lien vers le fichier JavaScript de cette manière :
+
+```html
+<head>
+    <!-- ... (other meta tags and links) -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <title>Todo List App</title>
+</head>
+```
+
+Assurez-vous également que les sélecteurs et les classes utilisés dans le script correspondent aux éléments HTML de votre projet. Ces exemples de scripts ajoutent des interactions simples pour améliorer l'expérience utilisateur, mais n'oublient pas que la sécurité et la validation appropriées restent des priorités lors de l'ajout de scripts à votre application.
+
+1. Amélioration de la Création et de la Mise à Jour des Tâches (tasks.php) - Affichage du Formulaire de Mise à Jour au Clic :
+
+javascript
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const updateTaskButtons = document.querySelectorAll(".update-task-button");
+    const updateTaskForms = document.querySelectorAll(".update-task-form");
+
+    updateTaskButtons.forEach((button, index) => {
+        button.addEventListener("click", function() {
+            updateTaskForms[index].classList.toggle("show");
+        });
+    });
+});
+```
+2. Validation de Formulaire (tasks.php et manage_users.php) - Vérification des Champs Requis avant Soumission :
+
+javascript
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const forms = document.querySelectorAll("form");
+
+    forms.forEach(form => {
+        form.addEventListener("submit", function(event) {
+            const inputs = form.querySelectorAll("input[required], textarea[required]");
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add("error");
+                    isValid = false;
+                } else {
+                    input.classList.remove("error");
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+});
+```
+
+Bien sûr, voici quelques exemples supplémentaires de code JavaScript pour améliorer davantage le fonctionnement de différentes parties du projet :
+
+**1. Gestion des Tâches (tasks.php) - Ajout d'une fonction pour afficher/masquer le formulaire de mise à jour :**
+
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const updateButtons = document.querySelectorAll(".update-task-btn");
+    const updateForms = document.querySelectorAll(".update-task-form");
+
+    updateButtons.forEach((button, index) => {
+        button.addEventListener("click", function() {
+            updateForms[index].classList.toggle("hidden");
+        });
+    });
+});
+```
+
+**2. Amélioration de l'interface utilisateur - Ajout d'une animation de défilement doux pour les liens internes :**
+
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+
+    smoothScrollLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                });
+            }
+        });
+    });
+});
+```
+
+**3. Amélioration de la validation du formulaire de création de tâches - Vérification côté client avant la soumission :**
+
+```javascript
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+    const taskForm = document.querySelector("#task-form");
+    const taskNameInput = document.querySelector('input[name="task_name"]');
+    const taskDescriptionInput = document.querySelector('textarea[name="task_description"]');
+
+    taskForm.addEventListener("submit", function(event) {
+        if (taskNameInput.value.trim() === "" || taskDescriptionInput.value.trim() === "") {
+            event.preventDefault();
+            alert("Please fill in all fields before submitting.");
+        }
+    });
+});
+```
+
+Assurez-vous d'ajouter ces scripts à votre fichier `script.js` et de les lier dans le `<head>` de vos pages HTML comme indiqué dans ma réponse précédente. Ces exemples de scripts visent à améliorer l'interaction et la convivialité de l'application, mais n'oubliez pas de tester soigneusement votre application pour vous assurer que ces scripts fonctionnent correctement et n'entraînent pas de problèmes de compatibilité ou de sécurité.
